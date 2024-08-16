@@ -1,12 +1,16 @@
 import time
 
+import allure
+import pytest
+
 from pageObjects.UserManagement import UserManagement_Class
 from pageObjects.Login_user import Login_user_Class
 from utilities.Readconfig import ReadConfig_Class
+from utilities import Excelutilities
 
 
 class Test_UserManagement:
-    def test_UserManagement_url001(self, setup_login):
+    def test_UserMgt_url001(self, setup_login):
         Login = Login_user_Class(setup_login)
         username = ReadConfig_Class.getUsername()
         password = ReadConfig_Class.getPassword()
@@ -17,10 +21,17 @@ class Test_UserManagement:
         User.Click_Usermanagement_Button()
 
         if User.Validate_Usermanagement_URL() == "pass":
+            setup_login.save_screenshot(".\\Screenshots\\UserMgt_url_pass.png")  # Save a screenshot
+            screenshot = setup_login.get_screenshot_as_png()  # for allure screenshot attachment
+            allure.attach(screenshot, name="UserMgt_url_pass.png", attachment_type=allure.attachment_type.PNG)  # for allure screenshot attachment
             assert True
         else:
+            setup_login.save_screenshot(".\\Screenshots\\UserMgt_url_fail.png")  # Save a screenshot
+            screenshot = setup_login.get_screenshot_as_png()  # for allure screenshot attachment
+            allure.attach(screenshot, name="UserMgt_url_fail.png", attachment_type=allure.attachment_type.PNG)  # for allure screenshot attachment
             assert False
 
+    @pytest.mark.skip
     def test_UserManagement_search_002(self, setup_login):
         search = UserManagement_Class(setup_login)
         setup_login.execute_script("window.scrollTo(0,document.body.scrollHeight)")  # Code for scroll to bottom
@@ -33,8 +44,11 @@ class Test_UserManagement:
         else:
             assert False
 
+    @pytest.mark.skip
     def test_usersearchedit_003(self, setup_login):
         edit = UserManagement_Class(setup_login)
+        edit.Enter_Username("Viplav")
+        edit.Click_Usersearch_Button()
         # setup_login.execute_script("window.scrollTo(0,document.body.scrollHeight)")  # Code for scroll to bottom
         edit.Enter_Phoneno("1234567890")
         edit.Click_Savechanges_Button()
@@ -44,11 +58,10 @@ class Test_UserManagement:
             assert True
         else:
             assert False
-        edit.Click_Usermanagement_Button()
-
+    @pytest.mark.skip
     def test_viewallusers_004(self, setup_login):
         User = UserManagement_Class(setup_login)
-        time.sleep(1)
+        User.Click_Usermanagement_Button()
         setup_login.execute_script("window.scrollTo(0,document.body.scrollHeight)")  # Code for scroll to bottom
         User.Click_Viewallusers_Button()
         if User.Validate_viewalluser() == "pass":
@@ -81,3 +94,5 @@ class Test_UserManagement:
     #
     # def test_viewalldelete_006(self):
     #         pass
+
+

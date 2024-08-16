@@ -12,11 +12,13 @@ class UserManagement_Class:
     Click_Createuser_Xpath =(By.XPATH,"//a[normalize-space()='Create User']")
     Click_Createusersubmit_Xpath = (By.XPATH,"//button[@type='submit']")
     Click_Edit_Xpath = (By.XPATH,"//tbody/tr[1]/td[4]/a[1]")
-    Click_Delete_Xpath = (By.XPATH,"//tbody/tr[1]/td[4]/a[1]")
+    Click_Delete_Xpath = (By.XPATH,"//button[normalize-space()='Delete Customer']")
     Verify_Usermanagement_URL_Xpath = (By.XPATH,"//h2[normalize-space()='User Management']")
     Verify_Usermanagement_search_Xpath = (By.XPATH,"//h2[normalize-space()='Edit User']")
     Verify_Edituser_Xpath = (By.XPATH,"//div[@class='success-message']")
     Verify_Viewallusers_Xpath = (By.XPATH,"//h2[normalize-space()='User List']")
+    Click_Next_Xpath = (By.XPATH,"//a[normalize-space()='Next']")
+    Verify_Deleteuser_Xpath = (By.XPATH,"//div[@class='error-message']")
 
 
     def __init__(self,driver):

@@ -4,8 +4,8 @@ from selenium import webdriver
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("headless")
 
-def pytest_addoptions(parser):
-    parser.addoption("--browser")
+# def pytest_addoptions(parser):
+#     parser.addoption("--browser")
 
 url_main_page = 'https://bankapp.credence.in'
 url_login = "https://bankapp.credence.in/login.html"

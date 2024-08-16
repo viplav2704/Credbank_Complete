@@ -57,3 +57,42 @@ class Test_AccMgt:
             assert True
         else:
             assert False
+
+    def test_searchacc_002(self,setup_login):
+        Search = AccountMgt_Class(setup_login)
+        Search.Click_AccMgt_Button()
+        setup_login.execute_script("window.scrollTo(0,document.body.scrollHeight)")  # Code for scroll to bottom
+        Search.Enter_AccSearch("147")
+        Search.Click_AccSearch_Button()
+        if Search.Validate_SearchAcc() == "pass":
+            assert True
+        else:
+            assert False
+
+
+    def test_editacc_003(self,setup_login):
+        Edit = AccountMgt_Class(setup_login)
+        Edit.Click_AccMgt_Button()
+        setup_login.execute_script("window.scrollTo(0,document.body.scrollHeight)")  # Code for scroll to bottom
+        Edit.Enter_AccSearch("147")
+        Edit.Click_AccSearch_Button()
+        if Edit.Validate_SearchAcc() == "pass":
+            Edit.Click_Edit_Button()
+            setup_login.execute_script("window.scrollTo(0,document.body.scrollHeight)")  # Code for scroll to bottom
+            time.sleep(3)
+            Edit.Select_Acctype(1)
+            time.sleep(3)
+            Edit.Enter_Balance("6556")
+
+            Edit.Click_Update_Button()
+            if Edit.Validate_EditAcc() == "pass":
+                assert True
+            else:
+                assert False
+        else:
+            assert False
+
+
+
+
+

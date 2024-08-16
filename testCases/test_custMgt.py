@@ -37,7 +37,8 @@ class Test_CustMgt:
             if search.Validate_Search() == Expected_result:
                 setup_login.save_screenshot(f".\\Screenshots\\CustMgtsearch_001_pass{r}.png")  # Save a screenshot
                 screenshot = setup_login.get_screenshot_as_png()  # for allure screenshot attachment
-                allure.attach(screenshot, name=f"CustMgtsearch_001_pass{r}.png", attachment_type=allure.attachment_type.PNG) # for allure screenshot attachment
+                allure.attach(screenshot, name=f"CustMgtsearch_001_pass{r}.png",
+                              attachment_type=allure.attachment_type.PNG)  # for allure screenshot attachment
                 actual = Excelutilities.writeData(self.Excel_custsearch_data, "Sheet1", r, 3, search.Validate_Search())
                 status = Excelutilities.writeData(self.Excel_custsearch_data, "Sheet1", r, 4, "pass")
                 self.search_status.append("pass")
@@ -45,7 +46,8 @@ class Test_CustMgt:
             else:
                 setup_login.save_screenshot(f".\\Screenshots\\CustMgtsearch_001_fail{r}.png")  # Save a screenshot
                 screenshot = setup_login.get_screenshot_as_png()  # for allure screenshot attachment
-                allure.attach(screenshot, name=f"CustMgtsearch_001_fail{r}.png", attachment_type=allure.attachment_type.PNG) # for allure screenshot attachment
+                allure.attach(screenshot, name=f"CustMgtsearch_001_fail{r}.png",
+                              attachment_type=allure.attachment_type.PNG)  # for allure screenshot attachment
 
                 actual = Excelutilities.writeData(self.Excel_custsearch_data, "Sheet1", r, 3, search.Validate_Search())
                 status = Excelutilities.writeData(self.Excel_custsearch_data, "Sheet1", r, 4, "fail")
@@ -55,6 +57,7 @@ class Test_CustMgt:
             assert True
         else:
             assert False
+
     def test_CreateCust_002(self, setup_login):
         create = CustMgt_Class(setup_login)
         Rcount = Excelutilities.getrowCount(self.Excel_createcust_data, "Sheet1")
@@ -100,8 +103,20 @@ class Test_CustMgt:
             assert True
         else:
             assert False
-
-
-
-
-
+    def test_editacc_003(self, setup_login):
+        Edit = CustMgt_Class(setup_login)
+        Edit.Click_Custmgt_Button()
+        setup_login.execute_script("window.scrollTo(0,document.body.scrollHeight)")  # Code for scroll to bottom
+        Edit.Enter_CustID("21")
+        Edit.Click_SearchCustID_Button()
+        if Edit.Validate_Search() == "pass":
+            setup_login.execute_script("window.scrollTo(0,document.body.scrollHeight)")  # Code for scroll to bottom
+            Edit.Enter_City("Changecity")
+            Edit.Click_Savechanges_Button()
+            time.sleep(2)
+            if Edit.Validate_Savedchanges() == "pass":
+                assert True
+            else:
+                assert False
+        else:
+            assert False
