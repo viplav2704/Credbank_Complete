@@ -1,0 +1,29 @@
+1.  main url: Done
+2.  login url : Done
+3.  user login: Done
+4.  users login using excel multiple data : Done
+-
+5.  user management url : Done
+6.  user management search : Done
+7.  search and edit : Done
+8.  view all users button : Done
+
+9.  create user after login page : Done
+10. viewall >> edit
+11. viewall >> delete
+
+12. customer management url : NA
+13. search customer : Done
+14. view all cust : NA
+15. Create cust: Done
+16. delete cust from view all cust page
+17. delete cust from search cust page
+
+18. Create Acc : Done
+
+19. Search by CustID in View all Acc and get the AccID where CustID as provided will match.
+    Do it Likewise and search CustID by providing UserID and search in View all Cust.
+
+
+20: Transfer fund : Done
+21: Bill Payment: done
