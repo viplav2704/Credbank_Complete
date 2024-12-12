@@ -17,7 +17,7 @@ def setup(request):
     driver.maximize_window()
     driver.get(url_main_page)
     yield driver
-    driver.quit()
+    driver.quit()  # teardown process
 
 
 @pytest.fixture(scope="class")

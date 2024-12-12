@@ -6,7 +6,7 @@ from utilities.Readconfig import ReadConfig_Class
 
 
 class Test_login:
-    def test_login_url_001(self, setup):
+    def test_login_url_001(setup):
         print("Page Title --> ", setup.title)
         Login = Login_user_Class(setup)
         Login.click_login_button()
